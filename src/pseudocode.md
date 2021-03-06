@@ -1,6 +1,6 @@
 # Functions 
 ## 1x1_square(size, color back, color front, x, y) 
-    void 1x1_square(size, color_back, color_front, x, y)
+    function 1x1_square(size, color_back, color_front, x, y)
     {
         fill(back);
         rect(x*cote, y*cote, size); 
@@ -10,7 +10,7 @@
 
 ## 4x4_square(size, color A, color B, x, y, orientation) 
 
-    void 4x4_square(size, color_A, color_B, x, y)
+    function 4x4_square(size, color_A, color_B, x, y)
     {
         for (let i = 0; i < 2; i++) {
             for (let j = 0; j < 2; j++) {
