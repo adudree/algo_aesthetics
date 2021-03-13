@@ -72,8 +72,8 @@ function draw() {
     }
 }
 function preload() {
-    whiteShape = loadImage('../oneWhiteShape.png');
-    blackShape = loadImage('../oneBlackShape.png');
+    whiteShape = loadImage('../src/img/oneWhiteShape.png');
+    blackShape = loadImage('../src/img/oneBlackShape.png');
 }
 function mousePressed() {
     shapeA = defineOtherShape(shapeA);
