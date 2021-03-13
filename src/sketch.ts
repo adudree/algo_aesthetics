@@ -41,7 +41,6 @@ function bigSquare(size, shapeRef)
 
             if( i == 0 && j == 0) {
                 image(shapeRef, i*size, j*size, size, size);
-                print(size);
             }
             
             else {
@@ -53,7 +52,7 @@ function bigSquare(size, shapeRef)
                         rotate(PI);
                     }
                     else if(i == 0 && j == 1) {
-                        scale(-1.0, 1.0);
+                        //scale(-1.0, 1.0);
                         rotate(PI);
                     }
                     else {
@@ -102,8 +101,8 @@ function draw() {
 // -------------------
 
 function preload() {
-    whiteShape = loadImage("http://martinaudrey.fr/img/oneWhiteShape.png");
-    blackShape = loadImage("http://martinaudrey.fr/img/oneBlackShape.png");
+    whiteShape = loadImage('./oneWhiteShape.png');
+    blackShape = loadImage('./oneBlackShape.png');
 }
 
 function mousePressed() {
