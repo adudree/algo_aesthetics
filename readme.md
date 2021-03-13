@@ -5,7 +5,7 @@
 ## My artwork 
 
 * Inspired by [Manuel Barbadillo - IRAINA (1966)](http://dada.compart-bremen.de/item/artwork/493).
-* Have a look on my work [here](https://https://adudree.github.io/algo_aesthetics/)!
+* Have a look on my work [here](https://adudree.github.io/algo_aesthetics/)!
 
 ## My pseudocode 
 
