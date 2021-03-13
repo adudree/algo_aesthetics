@@ -72,7 +72,7 @@ function draw() {
     }
 }
 function preload() {
-    whiteShape = loadImage('./iraina.jpg');
+    whiteShape = loadImage('./oneWhiteShape.png');
     blackShape = loadImage('./oneBlackShape.png');
 }
 function mousePressed() {
