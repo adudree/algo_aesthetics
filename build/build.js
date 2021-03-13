@@ -73,8 +73,8 @@ function draw() {
     }
 }
 function preload() {
-    whiteShape = loadImage("./oneWhiteShape.png");
-    blackShape = loadImage("./oneBlackShape.png");
+    whiteShape = loadImage("http://martinaudrey.fr/img/oneWhiteShape.png");
+    blackShape = loadImage("http://martinaudrey.fr/img/oneBlackShape.png");
 }
 function mousePressed() {
     shapeA = defineOtherShape(shapeA);
