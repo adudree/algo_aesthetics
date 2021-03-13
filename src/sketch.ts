@@ -52,7 +52,7 @@ function bigSquare(size, shapeRef)
                         rotate(PI);
                     }
                     else if(i == 0 && j == 1) {
-                        //scale(-1.0, 1.0);
+                        scale(-1.0, 1.0);
                         rotate(PI);
                     }
                     else {
@@ -101,7 +101,7 @@ function draw() {
 // -------------------
 
 function preload() {
-    whiteShape = loadImage('./oneWhiteShape.png');
+    whiteShape = loadImage('./iraina.jpg');
     blackShape = loadImage('./oneBlackShape.png');
 }
 
