@@ -4,17 +4,24 @@
 
 const gui = new dat.GUI()
 const params = {
-    Random_Seed: 0,
+    N: 8,
+    Download_Image: () => save(),
 }
-gui.add(params, "Random_Seed", 0, 100, 1)
+
+gui.add(params, "N", 4, 40, 4)
+gui.add(params, "Download_Image")
 // -------------------
 //       Drawing
 // -------------------
 let whiteShape : p5.Image;
 let blackShape : p5.Image; 
+let shapeA, shapeB;
+
+const nbMiniSquare = params.N;
 
 function defineOtherShape(shapeRef) {
     let invertedColorShape;
+
     if (shapeRef == whiteShape) {
         invertedColorShape = blackShape;
      }
@@ -25,7 +32,7 @@ function defineOtherShape(shapeRef) {
     return invertedColorShape;
 }
 
-function bigSquare(size, shapeRef, x, y)
+function bigSquare(size, shapeRef)
 {
     let otherShape = defineOtherShape(shapeRef);
     
@@ -33,13 +40,14 @@ function bigSquare(size, shapeRef, x, y)
         for (let j = 0; j < 2; j++) {
 
             if( i == 0 && j == 0) {
-                image(shapeRef, i*size + x, j*size + y, size, size);
+                image(shapeRef, i*size, j*size, size, size);
+                print(size);
             }
             
             else {
                 push();
                     imageMode(CENTER);
-                    translate(x + i*size + size/2, y + j*size + size/2);
+                    translate(i*size + size/2, j*size + size/2);
 
                     if(i == 1 && j == 0) {
                         rotate(PI);
@@ -60,40 +68,35 @@ function bigSquare(size, shapeRef, x, y)
     }
 }
 
-function rotateBigSquare(angle) {
-    rotate(angle);
-    bigSquare(width/4, whiteShape, 0, 0);
+function drawBigSquare(translateX, translateY, angle, colorShape, posX, posY) {
+    const size = 2*width/params.N;
+    const newWidth = 2*size;
+
+    push();
+        translate((posX + translateX)*newWidth, (posY + translateY)*newWidth);
+        rotate(angle);
+        bigSquare(width/params.N, colorShape);
+    pop();
+}
+
+function drawMegaSquare(posX, posY) { 
+    drawBigSquare(0, 0, 0, shapeA, posX, posY);
+    drawBigSquare(1, 0, PI/2, shapeB, posX, posY);
+    drawBigSquare(0, 1, 3*PI/2, shapeB, posX, posY);
+    drawBigSquare(1, 1, PI, shapeA, posX, posY);
 }
 
 function draw() {
-    randomSeed(params.Random_Seed);
     background(200);
+    const n = params.N/4;
 
-    push();
-        translate(0, 0);
-        rotate(0);
-        bigSquare(width/4, whiteShape, 0, 0);
-    pop();
-
-    push();
-        translate(width, 0);
-        rotate(PI/2);
-        bigSquare(width/4, blackShape, 0, 0);
-    pop();
-
-    push();
-        translate(0, height);
-        rotate(3*PI/2);
-        bigSquare(width/4, blackShape, 0, 0);
-    pop();
-
-    push();
-        translate(width, height);
-        rotate(PI);
-        bigSquare(width/4, whiteShape, 0, 0);
-    pop();
-
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            drawMegaSquare(i, j);
+        }
+    }
 }
+
 // -------------------
 //    Initialization
 // -------------------
@@ -103,8 +106,15 @@ function preload() {
     blackShape = loadImage("../src/oneBlackShape.png");
 }
 
+function mousePressed() {
+    shapeA = defineOtherShape(shapeA);
+    shapeB = defineOtherShape(shapeB);
+}  
+
 function setup() {
     p6_CreateCanvas();
+    shapeA = whiteShape;
+    shapeB = blackShape;
 }
 
 function windowResized() {
