@@ -101,8 +101,8 @@ function draw() {
 // -------------------
 
 function preload() {
-    whiteShape = loadImage('./oneWhiteShape.png');
-    blackShape = loadImage('./oneBlackShape.png');
+    whiteShape = loadImage('../oneWhiteShape.png');
+    blackShape = loadImage('../oneBlackShape.png');
 }
 
 function mousePressed() {
