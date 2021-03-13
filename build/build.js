@@ -1,6 +1,6 @@
 var gui = new dat.GUI();
 var params = {
-    N: 8,
+    N: 4,
     Download_Image: function () { return save(); },
 };
 gui.add(params, "N", 4, 40, 4);
