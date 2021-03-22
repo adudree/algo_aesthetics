@@ -1,8 +1,10 @@
 var gui = new dat.GUI();
 var params = {
+    RandomSeed: 1,
     N: 4,
     Download_Image: function () { return save(); },
 };
+gui.add(params, "RandomSeed", 1, 300, 1);
 gui.add(params, "N", 4, 40, 4);
 gui.add(params, "Download_Image");
 var whiteShape;
@@ -63,6 +65,7 @@ function drawMegaSquare(posX, posY) {
     drawBigSquare(1, 1, PI, shapeA, posX, posY);
 }
 function draw() {
+    randomSeed(params.RandomSeed);
     background(200);
     var n = params.N / 4;
     for (var i = 0; i < n; i++) {

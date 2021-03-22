@@ -4,10 +4,12 @@
 
 const gui = new dat.GUI()
 const params = {
+    RandomSeed: 1,
     N: 4,
     Download_Image: () => save(),
 }
 
+gui.add(params, "RandomSeed", 1, 300, 1)
 gui.add(params, "N", 4, 40, 4)
 gui.add(params, "Download_Image")
 // -------------------
@@ -19,7 +21,7 @@ let shapeA, shapeB;
 
 const nbMiniSquare = params.N;
 
-function defineOtherShape(shapeRef) {
+function defineOtherShape(shapeRef : p5.Image) {
     let invertedColorShape;
 
     if (shapeRef == whiteShape) {
@@ -32,7 +34,7 @@ function defineOtherShape(shapeRef) {
     return invertedColorShape;
 }
 
-function bigSquare(size, shapeRef)
+function bigSquare(size : number, shapeRef : p5.Image)
 {
     let otherShape = defineOtherShape(shapeRef);
     
@@ -67,7 +69,7 @@ function bigSquare(size, shapeRef)
     }
 }
 
-function drawBigSquare(translateX, translateY, angle, colorShape, posX, posY) {
+function drawBigSquare(translateX : number, translateY : number, angle : number, colorShape : p5.Image, posX : number, posY : number) {
     const size = 2*width/params.N;
     const newWidth = 2*size;
 
@@ -78,14 +80,15 @@ function drawBigSquare(translateX, translateY, angle, colorShape, posX, posY) {
     pop();
 }
 
-function drawMegaSquare(posX, posY) { 
-    drawBigSquare(0, 0, 0, shapeA, posX, posY);
-    drawBigSquare(1, 0, PI/2, shapeB, posX, posY);
-    drawBigSquare(0, 1, 3*PI/2, shapeB, posX, posY);
-    drawBigSquare(1, 1, PI, shapeA, posX, posY);
+function drawMegaSquare(posX : number, posY  : number) {
+        drawBigSquare(0, 0, 0, shapeA, posX, posY);
+        drawBigSquare(1, 0, PI/2, shapeB, posX, posY);
+        drawBigSquare(0, 1, 3*PI/2, shapeB, posX, posY);
+        drawBigSquare(1, 1, PI, shapeA, posX, posY);
 }
 
 function draw() {
+    randomSeed(params.RandomSeed);
     background(200);
     const n = params.N/4;
 
